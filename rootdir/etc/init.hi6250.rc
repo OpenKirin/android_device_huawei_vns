@@ -36,6 +36,10 @@ on early-init
     setprop persist.service.hdb.enable true
 
 on init
+    # NFC
+    # NXP HAL expects /dev/nq-nci
+    symlink /dev/pn544 /dev/nq-nci
+
     mkdir /cust
     mkdir /vendor
     mkdir /product
@@ -323,6 +327,7 @@ on post-fs
 
 on post-fs-data
     start teecd
+    mkdir /data/nfc 0755 nfc nfc
 
     mkdir /data/misc/radvd 0770 root root
     mkdir /data/misc/dhcp6s 0770 root root
@@ -959,6 +964,35 @@ on boot
     chown radio radio /dev/madapt
     chmod 0660 /dev/madapt
 
+    chown nfc nfc /sys/nfc/nfc_fwupdate
+    chmod 0664 /sys/nfc/nfc_fwupdate
+    chown nfc nfc /sys/nfc/nxp_config_name
+    chmod 0664 /sys/nfc/nxp_config_name
+    chown nfc nfc /sys/nfc/nfc_brcm_conf_name
+    chmod 0664 /sys/nfc/nfc_brcm_conf_name
+    chown nfc nfc /sys/nfc/nfc_sim_switch
+    chmod 0664 /sys/nfc/nfc_sim_switch
+    chown nfc nfc /sys/nfc/nfc_sim_status
+    chmod 0444 /sys/nfc/nfc_sim_status
+    chown nfc nfc /sys/nfc/rd_nfc_sim_status
+    chmod 0444 /sys/nfc/rd_nfc_sim_status
+    chown nfc nfc /sys/nfc/nfc_enable_status
+    chmod 0664 /sys/nfc/nfc_enable_status
+    chown nfc nfc /sys/nfc/nfc_card_num
+    chmod 0444 /sys/nfc/nfc_card_num
+    chown nfc nfc /sys/nfc/nfc_chip_type
+    chmod 0444 /sys/nfc/nfc_chip_type
+    chown nfc nfc /sys/nfc/nfc_fw_version
+    chmod 0444 /sys/nfc/nfc_fw_version
+    chown nfc nfc /sys/nfc/nfcservice_lock
+    chmod 0664 /sys/nfc/nfcservice_lock
+    chown nfc nfc /sys/nfc/nfc_svdd_sw
+    chmod 0664 /sys/nfc/nfc_svdd_sw
+    chown nfc nfc /sys/nfc/nfc_close_type
+    chmod 0664 /sys/nfc/nfc_close_type
+    chown nfc nfc /sys/nfc/nfc_single_channel
+    chmod 0444 /sys/nfc/nfc_single_channel
+
     setprop ro.config.compatibility_enable 1
 
     setprop hifi.watchdog.come false
@@ -1103,7 +1137,7 @@ on property:bastet.service.enable=true
 
 # Start service
 
-service HwCamCfgSvr /vendor/bin/HwCamCfgSvr hi6250 BERLIN
+service HwCamCfgSvr /vendor/bin/HwCamCfgSvr hi6250 VENUS
     class main
     user media
     group audio camera inet net_bt net_bt_admin net_bw_acct mediadrm wakelock system
@@ -1273,7 +1307,3 @@ service fingerprintd /system/bin/fingerprintd
     class late_start
     user system
     group input
-
-service dts /system/bin/dts_hpx_service
-    class core
-    user root

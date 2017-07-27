@@ -59,6 +59,8 @@
 /dev/block/mmcblk0p39				0660 system system
 /dev/block/mmcblk0p45				0660 system system
 
+/dev/pn544                			0660 nfc nfc
+
 /dev/act                  			0660 radio radio
 /dev/hwlog_exception      			0662 root log
 /dev/log/hilog            			0662 root log

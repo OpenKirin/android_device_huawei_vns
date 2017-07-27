@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/honor/berlin
+LOCAL_PATH := device/huawei/vns
 
 # Architecture
 TARGET_ARCH := arm64
@@ -44,7 +44,7 @@ ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := hi6250,Berlin,berlin,HWBLN-H,BLN-L21,BLN-L22,BLN-L24
+TARGET_OTA_ASSERT_DEVICE := hi6250,VNS,vns,VENUS,venus
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -89,6 +89,11 @@ TARGET_USES_ION := true
 USE_DEVICE_SPECIFIC_GPS := true
 TARGET_NO_RPC := true
 
+# NFC
+TARGET_USES_NQ_NFC := true
+BOARD_NFC_CHIPSET := pn548
+NXP_CHIP_TYPE := 2
+
 # Kernel
 BOARD_KERNEL_BASE := 0x00478000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -98,23 +103,23 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_HEADER_ARCH := arm64
 
-TARGET_KERNEL_SOURCE := kernel/honor/berlin
+TARGET_KERNEL_SOURCE := kernel/huawei/vns
 TARGET_KERNEL_CONFIG := hisi_6250_defconfig
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
-BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3154116608
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 25983713280
-BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 11231236096
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# OTA
+BLOCK_BASED_OTA := false
 
 # Properties
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
@@ -124,7 +129,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.hi6250
 
 # RIL
 TARGET_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
-BOARD_RIL_CLASS := ../../../device/honor/berlin/ril
+BOARD_RIL_CLASS := ../../../device/huawei/vns/ril
 PROTOBUF_SUPPORTED := true
 TARGET_RIL_VARIANT := proprietary
 
@@ -138,11 +143,11 @@ TARGET_COPY_OUT_VENDOR := system
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_hi6250
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_berlin.cpp
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_vns.cpp
 
 # Sepolicy
 BOARD_SEPOLICY_DIRS += \
-	device/honor/berlin/sepolicy
+	device/huawei/vns/sepolicy
 
 # Wifi
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
@@ -151,4 +156,4 @@ BOARD_HOSTAPD_DRIVER 		:= NL80211
 CONFIG_DRIVER_NL80211		:= y
 
 # inherit from the proprietary version
--include vendor/honor/berlin/BoardConfigVendor.mk
+-include vendor/huawei/vns/BoardConfigVendor.mk

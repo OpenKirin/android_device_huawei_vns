@@ -65,5 +65,5 @@
     <value>1417</value>
     <value>1855</value>
   </array>
-  <item name="battery.capacity">3340</item> <!-- 3900mAh -->
+  <item name="battery.capacity">2900</item> <!-- 3900mAh -->
 </device>

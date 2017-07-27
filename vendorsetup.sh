@@ -1,1 +1,1 @@
-add_lunch_combo lineage_berlin-userdebug
+add_lunch_combo lineage_vns-userdebug

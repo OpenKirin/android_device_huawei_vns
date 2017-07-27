@@ -14,7 +14,7 @@ ro.config.enable_iaware=true
 ro.config.hw_dts=true
 ro.config.ipv4.mtu=1400
 
-ro.hardware.alter=Hisilicon Kirin 655
+ro.hardware.alter=Hisilicon Kirin 650
 
 # Camera
 camera.hal1.packagelist=com.google.android.GoogleCamera

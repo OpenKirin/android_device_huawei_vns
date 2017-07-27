@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/honor/berlin/full_berlin.mk)
+$(call inherit-product, device/huawei/vns/full_vns.mk)
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
@@ -20,5 +20,5 @@ TARGET_SCREEN_WIDTH := 1080
 
 PRODUCT_GMS_CLIENTID_BASE := android-huawei
 
-PRODUCT_NAME := lineage_berlin
-BOARD_VENDOR := honor
+PRODUCT_NAME := lineage_vns
+BOARD_VENDOR := Huawei
