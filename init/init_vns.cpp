@@ -45,4 +45,6 @@ void init_target_properties()
     platform = property_get("ro.board.platform");
     if (platform != ANDROID_TARGET)
         return;
+
+    property_set("ro.product.model", "VNS");
 }
